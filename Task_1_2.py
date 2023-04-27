@@ -4,7 +4,7 @@ a2 = x - y
 a3 = x * y
 a4 = x / y
 a5 = x // y
-
+result = [a1, a2, a3, a4, a5]
 res = 0
 
 if a1 >= a2:
@@ -44,4 +44,5 @@ if a5 >= a1:
                 res = a5
             else:
                 res = a4
-print(res)
+print(f'Максимум {res}')
+print(f'Список чисел для удобства: {result}')
