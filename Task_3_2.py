@@ -1,4 +1,4 @@
-n = int(input('Введите число:'))
+n = int(input('Введите число: '))
 n = str(n)
 lst = [str(i) for i in range(10)]
 for i in lst:
