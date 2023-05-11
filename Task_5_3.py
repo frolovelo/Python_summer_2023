@@ -1,4 +1,3 @@
-from time import *
 n = int(input('Введите число: '))
 
 print(1, end=' ')
@@ -7,4 +6,3 @@ for i in range(n-1):
     new = a + b
     a, b = b, new
     print(new, end=' ')
-end = time()
