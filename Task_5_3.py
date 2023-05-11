@@ -1,8 +1,10 @@
+from time import *
 n = int(input('Введите число: '))
 
-lst = [0, 1]
-f = 0
-for i in range(n - 1):
-    s = lst[i] + lst[i + 1]
-    lst.append(s)
-print(*lst[1:])
+print(1, end=' ')
+a, b = 0, 1
+for i in range(n-1):
+    new = a + b
+    a, b = b, new
+    print(new, end=' ')
+end = time()
