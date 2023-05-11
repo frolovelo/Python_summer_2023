@@ -1,3 +1,5 @@
+from math import inf
+
 x, y = int(input()), int(input())
 a1 = x + y
 a2 = x - y
@@ -5,7 +7,7 @@ a3 = x * y
 a4 = x / y
 a5 = x // y
 result = [a1, a2, a3, a4, a5]
-res1 = -10000
+res1 = -inf
 res = a1
 if a2 > res:
     res1 = res
@@ -27,6 +29,5 @@ if a5 > res:
     res = a5
 elif a5 > res1:
     res1 = a5
-
 print('Второй максимум:', res1)
 print(f'Список чисел для удобства проверки: {result}')
