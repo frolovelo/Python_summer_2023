@@ -1,6 +1,6 @@
-n = 6
+n = int(input('Введите положительное число'))
 lst = []
-print('Простое:')
+print('Простое решение:')
 for i in range(1, n + 1):
     if n % i == 0:
         print(i, end=' ')
@@ -19,7 +19,7 @@ for i in lst:
         m = m / i
         d[i] = d.get(i, 0) + 1
 
-print('Сложное:')
+print('Сложное решение:')
 if len(d) == 0:
     print(f'{n}-{n}')
 for key, val in d.items():
