@@ -1,16 +1,20 @@
 def nok(lst):
     if len(lst) == 0:
         return 'Поробуй больше чисел!'
+    if 0 in lst:
+        return 0
     al = []
     for i in lst:
         d = {}
-        for j in range(2, 19):
+        i = abs(i)
+        for j in range(2, i+10):
             while i % j == 0:
                 i = i // j
                 d[j] = d.get(j, 0) + 1
                 if i == 1:
                     break
         al.append(d)
+    print(al)
     new = {}
     for i in al:
         for k, v in i.items():
@@ -22,4 +26,7 @@ def nok(lst):
     return res
 
 
-print(nok([1, 2, 3]))
+from math import *
+l = [5, -45, 43, 6]
+print('Моя функция:', nok(l))
+print('Модуль math:', lcm(*l))
