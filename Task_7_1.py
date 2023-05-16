@@ -14,7 +14,6 @@ def nok(lst):
                 if i == 1:
                     break
         al.append(d)
-    print(al)
     new = {}
     for i in al:
         for k, v in i.items():
@@ -27,6 +26,6 @@ def nok(lst):
 
 
 from math import *
-l = [5, -45, 43, 6]
+l = [23, -12, 32, 1]
 print('Моя функция:', nok(l))
 print('Модуль math:', lcm(*l))
