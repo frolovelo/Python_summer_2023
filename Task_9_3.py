@@ -7,6 +7,6 @@ with open('text.txt', 'r', encoding='utf-8') as f:
     for k in d_sort:
         if c == 10:
             break
-        # Оставил repr для отображения /n и пробелов
+        # Оставил repr для отображения /n и пробелов, >4 для красивого отображения
         print(f'{repr(k):>4}-{d[k]}')
         c += 1
