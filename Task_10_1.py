@@ -1,5 +1,7 @@
 import openpyxl
-wb = openpyxl.load_workbook('zp.xlsx')
+
+name_file = input('Введите название файла с расширением: ')
+wb = openpyxl.load_workbook(name_file)
 ws = wb.active
 d = {}
 for i in range(1, ws.max_row + 1):
@@ -15,4 +17,5 @@ for k, v in d.items():
     ws.cell(i, 1).value = k
     ws.cell(i, 2).value = v
     i += 1
-wb.save('zp.xlsx')
+print('Проверяйте')
+wb.save(name_file)
