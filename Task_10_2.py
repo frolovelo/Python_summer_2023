@@ -12,7 +12,6 @@ for bk in wb.worksheets:
 
 lst = sorted(d.items())
 lst.append(('Итого', sum(d.values())))
-print(lst)
 wb.create_sheet('Result')
 wb.active = wb['Result']
 ws = wb.active
