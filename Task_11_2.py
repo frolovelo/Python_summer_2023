@@ -6,14 +6,15 @@ with open(input('Введите исходный файл с расширени�
     wb = openpyxl.Workbook()
     wb.save(file_name_out)
     ws = wb.active
-    lst = ['номер', 'фамилия', 'имя', 'компания', 'зарплата']
-    ws.append(lst)
+    ws.append(['Номер', 'Фамилия', 'Имя', 'Компания', 'Зарплата'])
     s = 0
 
     for row in sorted(csv.reader(f1), key=lambda x: (x[3], x[1], x[2])):
-        if row != lst:
-            ws.append(row)
+        try:
             s += int(row[-1])
+            ws.append(row)
+        except:
+            pass
 
     ws.append(['', '', '', 'Итого', s])
     wb.save(file_name_out)
