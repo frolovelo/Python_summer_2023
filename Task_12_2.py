@@ -1,0 +1,1 @@
+print(', '.join([str(i) for i in range(1, 11) for j in range(1, i+1)]))
