@@ -1,10 +1,9 @@
 def recurs(n, res=0):
-    if n == 0:
-        return res
+    if n < 10:
+        return 1
     else:
         n //= 10
-        res += 1
-        return recurs(n, res)
+        return 1 + recurs(n)
 
 
 print(recurs(abs(int(input('Введите натуральное число: ')))))
