@@ -4,6 +4,8 @@ res = []
 def rec(d, key):
     for k, v in d.items():
         if type(v) == dict:
+            if key == k:
+                res.append(v)
             rec(v, key)
         elif key == k:
             res.append(v)
