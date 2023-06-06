@@ -1,6 +1,5 @@
 import re
 
-
 # 1 вариант
 def abre(t):
     return t[0].title()
