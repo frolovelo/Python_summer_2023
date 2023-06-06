@@ -5,6 +5,6 @@ def title_text(func):
 
 @title_text
 def change_text():
-    return input()
+    return input('Введите слова: ')
 
 print(change_text())
