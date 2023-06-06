@@ -6,7 +6,7 @@ def abre(t):
     return t[0].title()
 
 
-text = 'Инстит точной          меХан оптИки'
+text = input('Введите слова через пробел: ')
 a = re.sub(r'\b\w+\b', abre, text)
 print(''.join(re.split(r'[a-zа-я ]+', a)))
 
