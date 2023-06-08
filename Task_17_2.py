@@ -2,8 +2,8 @@ def deco(func):
     def wrapper(*args, **kwargs):
         lst = []
         func(*args, **kwargs)
-        [lst.append(i) for i in args if isinstance(i, str)]
-        [lst.append(i) for i in kwargs.values() if isinstance(i, str)]
+        [lst.append(i.upper()) for i in args if isinstance(i, str)]
+        [lst.append(i.upper()) for i in kwargs.values() if isinstance(i, str)]
         return lst
     return wrapper
 
