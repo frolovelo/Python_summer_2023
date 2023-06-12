@@ -66,13 +66,14 @@ class Pupil:
         '''Получает домашку'''
         self.homework[info] = status
 
-    def complit_any_hometask(self, info):
+    def complit_any_hometask(self, *info):
         '''Выполянет домашку по отдельной теме'''
-        if info in self.homework.keys():
-            self.homework[info] = 'Done'
-            self.send_homework(marIvanna)
-        else:
-            print(Fore.RED + f'Домашнего задания - {info} не задавали!' + Style.RESET_ALL)
+        for i in info:
+            if i in self.homework.keys():
+                self.homework[i] = 'Done'
+                self.send_homework(marIvanna)
+            else:
+                print(Fore.RED + f'Домашнего задания - {i} не задавали!' + Style.RESET_ALL)
 
     def complit_all_hometask(self):
         '''Выполянет всю домашку'''
