@@ -7,5 +7,6 @@ class Person:
         return f'{self.n1}{self.n2}{self.n3}'[::-1]
 
 
+
 p = Person('Рэй', 'Дуглас', 'Брэдбери')
 print(p)
