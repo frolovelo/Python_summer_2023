@@ -6,6 +6,7 @@ from colorama import Fore, Style
 
 colorama.init()
 
+
 class Menu:
     def __init__(self, m):
         self.m = m
@@ -17,18 +18,20 @@ class Cafe:
         self.name = name
         self.cash = 0
         self.card = 0
-        self.customer_choice = []
+        self.report = {}
         self.count = 0
 
     def search_menu(self, m, *prod):
         '''Поиск по меню'''
         res = []
+
         def search(product, m):
             for k, v in m.items():
                 if k == product:
                     res.append((k, v))
                 if isinstance(v, dict):
                     search(product, v)
+
         for product in prod:
             search(product, m)
         for product in prod:
@@ -49,23 +52,29 @@ class Cafe:
     def set_payments(self, customer, lst, pay):
         '''Оплата заказа'''
         sm = sum(map(lambda x: x[1], lst))
+
         def case(lst):
             t = ''
             for i in lst:
                 t += f'{i[0]} - {i[1]} руб.\n'
             return t
+
         if pay >= sm:
             self.count += 1
-            b = f'{"-"*20}\nЧек #{self.count}\nООО "{self.name}"\n{case(lst)}{datetime.strftime(datetime.now(), "%d.%m.%Y %H:%M:%S")}\n{"-"*20}'
+            self.rprt(lst)
+            b = f'{"-" * 20}\nЧек #{self.count}\nООО "{self.name}"\n{case(lst)}{datetime.strftime(datetime.now(), "%d.%m.%Y %H:%M:%S")}\n{"-" * 20}'
             customer.take_bill(b)
             return True
         else:
             print('Недостаточно средств')
             return False
 
-
-
-
+    def rprt(self, lst):
+        '''Отчётность'''
+        for i in lst:
+            self.report[i[0]] = self.report.get(i[0], {})
+            self.report[i[0]]['Сумма'] = self.report[i[0]].get('Сумма', 0) + i[1]
+            self.report[i[0]]['Кол-во'] = self.report[i[0]].get('Кол-во', 0) + 1
 
 
 class Client:
@@ -96,13 +105,9 @@ class Client:
         else:
             print(Fore.RED + 'Такого способа оплаты нет' + Style.RESET_ALL)
 
-
     def take_bill(self, bill):
         '''Получает чек'''
         self.bill = bill
-        print(bill)
-
-
 
 
 d = {'напиток': {'чай': {'черный чай': 100, 'зеленый чай': 120},
@@ -110,12 +115,17 @@ d = {'напиток': {'чай': {'черный чай': 100, 'зеленый �
                  'вода': {'без газа': 50, 'газированная': 50}},
      'пирожное': {'торт': {'медовик': 130, 'сметанник': 120, 'тирамису': 250}, 'выпечка': {'cлойка': 40, 'язычок': 30}}}
 menu = Menu(d)
-cafe = Cafe('Рога и Копыта')
-client = Client('Даниил', 400, 200)
 
-cafe.client_choise(client, menu, 'тирамису', 'эспрессо', 'квас')
+# создали кафе и клиента
+cafe = Cafe('Рога и Копыта')
+client = Client('Даниил', 800, 200)
+
+# клиент заказал кофе и пирожное, кваса у нас нет((
+cafe.client_choise(client, menu, 'тирамису', 'эспрессо', 'квас', 'эспрессо')
 client.pay(cafe, 'cash')
 
-print(cafe.name)
-print(client.name, client.money_cash, client.money_card, client.bill)
-# дописать отчётнгсть и всё
+print()
+# чек сохраняется у клиента, номер чека - не привязал(((
+print(client.bill)
+print()
+print('Отчётность кафе:', cafe.report)
