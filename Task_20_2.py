@@ -1,3 +1,4 @@
+'''Pandas сумма всех числовых значений в DataFrame'''
 import numpy as np
 import pandas as pd
 
