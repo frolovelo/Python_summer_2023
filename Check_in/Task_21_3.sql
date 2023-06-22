@@ -1,3 +1,4 @@
+--SQL создание таблицы
 CREATE TABLE book(id INT PRIMARY KEY, author text, title text, id_publisher int);
 INSERT INTO book VALUES (1, 'Ремарк Э.М.', 'Три товарища', 10),
 (2, 'Оруэлл Д.', '1984', 20),
