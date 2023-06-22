@@ -1,4 +1,4 @@
-'''itertools Генератор A-Z'''
+'''itertools Генератор A,1-Z,26'''
 from itertools import cycle, chain
 
 
