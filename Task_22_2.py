@@ -7,7 +7,6 @@ for parent, child in tree:
     if parent not in d:
         d[parent] = []
     d[parent].append(child)
-print(d)
 
 
 # Рекурсия на поиск кол-ва шагов - неэффективная))
