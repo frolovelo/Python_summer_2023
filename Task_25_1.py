@@ -63,7 +63,6 @@ class MainWindow(QMainWindow):
 
     def return_pressed(self):
         print("Return pressed!")
-        self.text = self.widget2.text()
         self.the_button_was_clicked()
 
     def selection_changed(self):
@@ -79,6 +78,7 @@ class MainWindow(QMainWindow):
 
     def the_button_was_clicked(self):
         print("Clicked!")
+        self.text = self.widget2.text()
         self.label_result.setText(self.text)
         #####################################################################################
         try:
