@@ -1,4 +1,4 @@
-"""PyQt6 Пример программы по взаимодействию PushButton, LineEdit, Label"""
+""" Пример программы по взаимодействию PushButton, LineEdit, Label"""
 
 import sys
 from PyQt6.QtWidgets import (
@@ -27,7 +27,7 @@ class MainWindow(QMainWindow):
         widget0.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignVCenter)
 
 
-        widget1 = QLabel("Не нажимайте enter - я снёс функцию...")  # Label "Нажимете Enter"
+        widget1 = QLabel("Enter решил оставить - всё же удобнее кнопки)\n Выполняют одно и то же...")  # Label "Нажимете Enter"
         font = widget1.font()
         font.setPointSize(10)
         widget1.setFont(font)
@@ -37,6 +37,8 @@ class MainWindow(QMainWindow):
         self.widget2.setMaxLength(20)
 
         # widget.setReadOnly(True) # раскомментируйте, чтобы сделать доступным только для чтения
+
+        self.widget2.returnPressed.connect(self.return_pressed)
         self.widget2.selectionChanged.connect(self.selection_changed)
         self.widget2.textChanged.connect(self.text_changed)
         self.widget2.textEdited.connect(self.text_edited)
@@ -59,6 +61,11 @@ class MainWindow(QMainWindow):
         widget.setLayout(layout)
         self.setCentralWidget(widget)
 
+    def return_pressed(self):
+        print("Return pressed!")
+        self.text = self.widget2.text()
+        self.the_button_was_clicked()
+
     def selection_changed(self):
         print("Selection changed")
 
@@ -72,7 +79,6 @@ class MainWindow(QMainWindow):
 
     def the_button_was_clicked(self):
         print("Clicked!")
-        self.text = self.widget2.text()
         self.label_result.setText(self.text)
         #####################################################################################
         try:
