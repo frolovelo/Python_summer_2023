@@ -62,7 +62,7 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(widget)
 
     def return_pressed(self):
-        print("Return pressed!")
+        print("Return pressed.")
         self.the_button_was_clicked()
 
     def selection_changed(self):
