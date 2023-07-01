@@ -1,3 +1,4 @@
+'''openpyxl'''
 import openpyxl
 
 name_file = input('Введите название файла с расширением: ')
