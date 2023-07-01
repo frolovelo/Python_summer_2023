@@ -1,3 +1,4 @@
+'''Подсчёт знаков из файла txt'''
 with open('text.txt', 'r', encoding='utf-8') as f:
     d = {}
     for i in f.read().lower():
