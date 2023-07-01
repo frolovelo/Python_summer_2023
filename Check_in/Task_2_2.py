@@ -1,3 +1,4 @@
+'''Поиск min тернарными операторами'''
 from random import *
 lst = [randint(1,50) for i in range(10)]
 m = lst[0]
