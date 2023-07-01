@@ -1,3 +1,4 @@
+'''while'''
 count = 0
 i = int(input())
 s = i
