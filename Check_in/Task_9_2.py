@@ -1,3 +1,4 @@
+'''Слово эталон - какие слова схожи с ним'''
 vowels = ('ауоыиэяюёе')
 def mask(word):
     return [i for i in range(len(word)) if word[i] in vowels]
