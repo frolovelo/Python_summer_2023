@@ -1,3 +1,4 @@
+'''Факториал циклом for'''
 from math import *
 n = int(input())
 f = 1
