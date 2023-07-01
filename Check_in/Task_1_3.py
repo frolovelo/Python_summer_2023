@@ -1,3 +1,4 @@
+'''Отбор двух максимумов тернарными операторами'''
 from math import inf
 
 x, y = int(input()), int(input())
