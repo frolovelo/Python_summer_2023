@@ -1,3 +1,4 @@
+'''Модуль operator'''
 from operator import *
 d = {'+': add,
      '-': sub,
