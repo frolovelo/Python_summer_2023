@@ -40,10 +40,6 @@ class MainWindow(QMainWindow):
         fileMenu2.addAction(action2)
 
         toolbar = self.addToolBar('Главный туллбар')
-
-        toolbar.addAction(action)
-        toolbar.addAction(action1)
-        toolbar.addAction(action2)
         toolbar.addAction(action3)
 
         self.setGeometry(200, 600, 700, 300)
