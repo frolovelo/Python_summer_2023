@@ -14,7 +14,7 @@ from datetime import *
 
 from dateutil.relativedelta import relativedelta
 
-locale.setlocale(locale.LC_ALL, ('ru_RU', 'UTF-8'))
+locale.setlocale(locale.LC_ALL, 'ru')
 
 
 class AnotherWindow(QWidget):
