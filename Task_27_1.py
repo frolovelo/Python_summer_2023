@@ -1,5 +1,5 @@
 '''Матрица Дартс'''
-n = int(input())
+n = int(input('Введите размерность квадратной матрицы: '))
 d = {}
 for i in range(n):
     for j in range(n):
