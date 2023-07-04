@@ -21,8 +21,8 @@ class AnotherWindow(QWidget):
     def __init__(self, root):
         super().__init__()
         self.main = root
-
         self.setWindowTitle("Изменение информации:")
+        self.setWindowIcon(QIcon('rocket_space_icon_185954.ico'))
         layout_main = QVBoxLayout()
 
         layout1 = QHBoxLayout()
@@ -94,7 +94,7 @@ class MainWindow(QMainWindow):
         self.per2_date_death = None
         self.text = ''
         self.setWindowTitle("Frolo dev")
-        self.setWindowIcon(QIcon('hope.ico'))
+        self.setWindowIcon(QIcon('rocket_space_icon_185954.ico'))
         self.setStatusBar(QStatusBar(self))
         # self.resize(700, 100)
         main_layout = QVBoxLayout()
