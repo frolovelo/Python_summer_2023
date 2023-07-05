@@ -4,17 +4,17 @@ import sys
 from PyQt6.QtGui import QAction, QIcon
 from PyQt6.QtWidgets import (
     QMainWindow, QApplication,
-    QLabel, QCheckBox, QComboBox, QPushButton, QTextEdit,
-    QLineEdit, QSpinBox, QDoubleSpinBox, QSlider, QHBoxLayout, QVBoxLayout, QWidget, QGridLayout, QStatusBar,
+    QLabel, QPushButton,
+    QLineEdit, QHBoxLayout, QVBoxLayout, QWidget, QStatusBar,
     QDateEdit, QMessageBox
 )
-from PyQt6.QtCore import Qt, QDateTime, QDate
+from PyQt6.QtCore import Qt, QDate
 from random import *
 from datetime import *
 
 from dateutil.relativedelta import relativedelta
 
-locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8')
+locale.setlocale(locale.LC_ALL, 'ru')
 
 
 class AnotherWindow(QWidget):
@@ -86,6 +86,8 @@ class AnotherWindow(QWidget):
         self.main.label_result_date2.setText(None)
         self.main.widget_DateDeath_per1.setText(None)
         self.main.widget_DateDeath_per2.setText(None)
+        self.main.count = 0
+        self.main.button.setText('Начать!')
         self.close()
 
     def cancel(self):
@@ -103,7 +105,6 @@ def get_font(size=10):
 
 class MainWindow(QMainWindow):
     '''Главное окно'''
-
     def __init__(self):
         super(MainWindow, self).__init__()
         self.lst_years_old1 = []
@@ -125,12 +126,21 @@ class MainWindow(QMainWindow):
             """)
         # self.resize(700, 100)
         main_layout = QVBoxLayout()
-        layout0 = QVBoxLayout()
-        layout1 = QGridLayout()
-        layout2 = QVBoxLayout()
-        main_layout.addLayout(layout0)
-        main_layout.addLayout(layout1)
-        main_layout.addLayout(layout2)
+        layout_legend = QVBoxLayout() # легенда и фото
+
+        layout_sub = QHBoxLayout() # Сборник layoutов ниже
+        layout_date1 = QVBoxLayout() # даты
+        layout_date2 = QVBoxLayout()
+        layout_points = QHBoxLayout()  # 1 : 0
+        layout_sub.addLayout(layout_date1)
+        layout_sub.addLayout(layout_points)
+        layout_sub.addLayout(layout_date2)
+
+        layout_button = QVBoxLayout() # кнопка Начать
+
+        main_layout.addLayout(layout_legend)
+        main_layout.addLayout(layout_sub)
+        main_layout.addLayout(layout_button)
 
         widget = QLabel("В 2020 году Илон Маск говорил,\nчто у него есть амбиции построить тысячу космических "
                         "кораблей за десять лет,\nчтобы к 2050 году переселить на планету миллион "
@@ -170,20 +180,22 @@ class MainWindow(QMainWindow):
         button_action_exit.setStatusTip("Выйти из приложения")
         button_action_exit.triggered.connect(self.close)
 
+#################################
         self.label_point_per1 = QLabel()
         self.label_point_per1.setFont(get_font(20))
         self.label_point_per1.setText('0')
-        self.label_point_per1.setAlignment(Qt.AlignmentFlag.AlignRight)
+        self.label_point_per1.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.label_point_per2 = QLabel()
         self.label_point_per2.setFont(get_font(20))
         self.label_point_per2.setText('0')
-        self.label_point_per2.setAlignment(Qt.AlignmentFlag.AlignLeft)
+        self.label_point_per2.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         label_vs = QLabel()
         label_vs.setFont(get_font(20))
         label_vs.setText(':')
         label_vs.setAlignment(Qt.AlignmentFlag.AlignCenter)
+###################################
 
         self.widget_DateDeath_per1 = QLabel(self.per1_date_death)
         self.widget_DateDeath_per1.setFont(get_font(8))
@@ -207,25 +219,25 @@ class MainWindow(QMainWindow):
         self.label_years_old2.setFont(get_font(13))
         self.label_years_old2.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
-        layout0.addWidget(widget)
-        # layout0.addWidget(button)
+        layout_legend.addWidget(widget)
 
-        layout1.addWidget(self.widget_name_per1, 0, 0)
-        layout1.addWidget(self.widget_name_per2, 0, 4)
-        layout1.addWidget(self.label_point_per1, 0, 1)
-        layout1.addWidget(label_vs, 0, 2)
-        layout1.addWidget(self.label_point_per2, 0, 3)
+        layout_points.addWidget(self.label_point_per1)
+        layout_points.addWidget(label_vs)
+        layout_points.addWidget(self.label_point_per2)
 
-        layout1.addWidget(self.label_years_old1, 1, 0)
-        layout1.addWidget(self.label_years_old2, 1, 4)
+        layout_date1.addWidget(self.widget_name_per1)
+        layout_date2.addWidget(self.widget_name_per2)
 
-        layout1.addWidget(self.widget_DateDeath_per1, 2, 0)
-        layout1.addWidget(self.widget_DateDeath_per2, 2, 4)
+        layout_date1.addWidget(self.label_years_old1)
+        layout_date2.addWidget(self.label_years_old2)
 
-        layout1.addWidget(self.label_result_date1, 3, 0)
-        layout1.addWidget(self.label_result_date2, 3, 4)
+        layout_date1.addWidget(self.widget_DateDeath_per1)
+        layout_date2.addWidget(self.widget_DateDeath_per2)
 
-        layout2.addWidget(self.button)
+        layout_date1.addWidget(self.label_result_date1)
+        layout_date2.addWidget(self.label_result_date2)
+
+        layout_button.addWidget(self.button)
 
         widget = QWidget()
         widget.setLayout(main_layout)
@@ -299,10 +311,10 @@ class MainWindow(QMainWindow):
                 self.label_point_per1.setText(c)
                 c = str(int(self.label_point_per2.text()) + 1)
                 self.label_point_per2.setText(c)
-            if self.label_point_per1.text() == '10':
+            if self.label_point_per1.text() == '3':
                 res = int(self.label_point_per1.text()) - int(self.label_point_per2.text())
                 self.final(self.widget_name_per1.text(), str(res), self.per1_date_birt, self.lst_years_old1)
-            elif self.label_point_per2.text() == '10':
+            elif self.label_point_per2.text() == '3':
                 res = int(self.label_point_per2.text()) - int(self.label_point_per1.text())
                 self.final(self.widget_name_per2.text(), str(res), self.per2_date_birt, self.lst_years_old2)
 
@@ -339,6 +351,7 @@ class MainWindow(QMainWindow):
 
         dlg = QMessageBox(self)
         dlg.setWindowTitle("Финал")
+        dlg.setFont(get_font(14))
         dlg.setText(f"Победитель: {name}!\n{mars(name, dt)}\n\nОтрыв в {count} {text_count_format(count)}.\nОжидаемая продолжительность "
                     f"жизни: {text_years_format(round(sum(lst) / len(lst)))}\nОжидаемая дата смерти: {datetime.strftime(av_date_death, '%a, %d %B %Y Год')}")
         dlg.exec()
