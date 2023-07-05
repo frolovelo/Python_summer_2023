@@ -1,7 +1,7 @@
 import locale
 import sys
 
-from PyQt6.QtGui import QAction, QIcon
+from PyQt6.QtGui import QAction, QIcon, QPixmap, QPicture
 from PyQt6.QtWidgets import (
     QMainWindow, QApplication,
     QLabel, QPushButton,
@@ -126,7 +126,7 @@ class MainWindow(QMainWindow):
             """)
         # self.resize(700, 100)
         main_layout = QVBoxLayout()
-        layout_legend = QVBoxLayout() # легенда и фото
+        layout_legend = QHBoxLayout() # легенда и фото
 
         layout_sub = QHBoxLayout() # Сборник layoutов ниже
         layout_date1 = QVBoxLayout() # даты
@@ -142,11 +142,17 @@ class MainWindow(QMainWindow):
         main_layout.addLayout(layout_sub)
         main_layout.addLayout(layout_button)
 
-        widget = QLabel("В 2020 году Илон Маск говорил,\nчто у него есть амбиции построить тысячу космических "
+        widget_legend_image = QLabel()
+        image = QPixmap('mars.png')
+        image.setDevicePixelRatio(8)
+        widget_legend_image.setPixmap(image)
+
+        widget_legend_text = QLabel("В 2020 году Илон Маск говорил,\nчто у него есть амбиции построить тысячу космических "
                         "кораблей за десять лет,\nчтобы к 2050 году переселить на планету миллион "
                         "человек.\n\nПроверим, кто сможет попасть на корабль!")
-        widget.setFont(get_font(16))
-        widget.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        widget_legend_text.setFont(get_font(16))
+        widget_legend_text.setAlignment(Qt.AlignmentFlag.AlignLeft)
+
 
         self.widget_name_per1 = QLabel("Дима")
         self.widget_name_per1.setFont(get_font(16))
@@ -219,7 +225,8 @@ class MainWindow(QMainWindow):
         self.label_years_old2.setFont(get_font(13))
         self.label_years_old2.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
-        layout_legend.addWidget(widget)
+        layout_legend.addWidget(widget_legend_image)
+        layout_legend.addWidget(widget_legend_text)
 
         layout_points.addWidget(self.label_point_per1)
         layout_points.addWidget(label_vs)
@@ -239,9 +246,9 @@ class MainWindow(QMainWindow):
 
         layout_button.addWidget(self.button)
 
-        widget = QWidget()
-        widget.setLayout(main_layout)
-        self.setCentralWidget(widget)
+        widget_legend_text = QWidget()
+        widget_legend_text.setLayout(main_layout)
+        self.setCentralWidget(widget_legend_text)
 
         menu = self.menuBar()
 
